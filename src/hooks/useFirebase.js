@@ -1,9 +1,12 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useState } from "react";
 import auth from '../firebase.init';
 
 const googleProvider = new GoogleAuthProvider();
 
 const useFirebase = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
@@ -20,9 +23,30 @@ const useFirebase = () => {
 
     const handleSignupForm = e => {
         e.preventDefault()
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                // ..
+            });
+
     }
 
-    return {handleGoogleSignIn, handleSignupForm}
+    const handleEmailBlur = email => {
+        setEmail(email);
+    }
+
+    const handlePasswordBlur = email => {
+        setPassword(email);
+    }
+
+    return { handleGoogleSignIn, handleSignupForm, handleEmailBlur, handlePasswordBlur }
 }
 
 export default useFirebase;
