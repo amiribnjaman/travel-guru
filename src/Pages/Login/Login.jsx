@@ -1,7 +1,6 @@
 import React from 'react';
-import './Home.css';
 
-const Home = () => {
+const Login = () => {
     return (
         <div>
             <div className="bg">
@@ -11,4 +10,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Login;
