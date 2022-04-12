@@ -1,0 +1,21 @@
+.home {
+    background-image: url('../../assets/img/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+  
+  .home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient( rgb(2, 2, 2), rgb(8, 8, 8));
+    opacity: .7;
+  }
